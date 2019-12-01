@@ -1,18 +1,18 @@
 
 <!DOCTYPE html>
-<html lang="en" class="loading">
+<html lang="zh-CN" class="loading">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Category: 工具 - Hexo</title>
+    <title>Dszkng&#39;s blog - blog</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="dszkng,"> 
-    
-    <meta name="author" content="John Doe"> 
-    <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
+    <meta name="description" content="blog,dszkng,"> 
+    <meta name="author" content="dszkng"> 
+    <link rel="alternative" href="atom.xml" title="Dszkng&#39;s blog" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
     <link href="https://fonts.loli.net/css?family=Roboto+Mono|Rubik&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
@@ -34,149 +34,72 @@
             <div></div>
         </div>
     </div>
-    <span id="config-title" style="display:none">Hexo</span>
+    <span id="config-title" style="display:none">Dszkng&#39;s blog</span>
     <div id="loader"></div>
-    <div class="nav">
-    <ul id="menu-menu" class="menu">
-        
-        <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="/whoami/" title="关于" external="false">关于</a>
-        </li>
-        
-        <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="/categories/" title="分类" external="false">分类</a>
-        </li>
-        
-        <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="/tags/" title="标签" external="false">标签</a>
-        </li>
-        
-        <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="/archives/" title="归档" external="false">归档</a>
-        </li>
-        
-    </ul>
-    <p class="copyright" id="copyright">
-        &copy; 2019 John Doe.
-        Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
-        Theme <a href="https://github.com/TriDiamond/hexo-theme-obsidian" title="Obsidian" target="_blank" rel="noopener">Obsidian</a>
-    </p>
+    <div id="single" class="page">
+    <div id="top">
+        <a class="iconfont icon-left image-icon" href="javascript:history.back()" target="_blank" rel="noopener"></a>
+    </div>
+    <div class="clone-element"></div>
+    <div class="section dark-obsidian">
+        <div class="article animated fadeIn">
+            <div class="main animated fadeIn">
+                <div class="content animated fadeIn">
+                
+                        <img class="img-center" style="padding-bottom: 2em;" src="/whoami/undraw_programming_2svr.svg" height="550" width="550/">
+
+<style>
+  .my-links {display: flex; justify-content: center; align-content: center; margin-top: 30px; width: 100%;}
+  .my-links a {display: flex; color: #000; padding: 2px 10px;border-bottom:none !important;}
+  .my-links a:after {display: none;}
+  .my-links a:hover {backround: #ddd;}
+  .my-links a span {font-size: 28px;}
+  .img-center {margin: 0 auto;}
+  .dark-obsidian .article .main .content {
+    padding: 0 6rem;
+  }
+  @media screen and (max-width: 1200px) {
+    .dark-obsidian .article .main .content {
+      padding: 0 0.5rem;
+    }
+  }
+</style>
+
+<div class="my-links img-center">
+  <a class="gradient-text" href="https://weibo.com/234353280" target="_blank" rel="noopener"><span class=" iconfont icon-weibo"></span></a>
+  <a class="gradient-text" href="https://github.com/dszkng" target="_blank" rel="noopener"><span class=" iconfont icon-github"></span></a>
+  <a class="gradient-text" href="https://twitter.com/dszkng" target="_blank" rel="noopener"><span class=" iconfont icon-twitter"></span></a>
+  <a class="gradient-text" href="https://stackoverflow.com/users/shangzongkang?tab=profile" target="_blank" rel="noopener"><span class=" iconfont icon-stack-overflow"></span></a>
 </div>
 
-<div id="container">
-    
-<div class="search-box">
-    <form class="site-search-form">
-        <span class="iconfont icon-search"></span>
-        <input type="text" id="local-search-input" class="st-search-input" />
-        <div class="iconfont icon-cross search-box-close"></div>
-    </form>
-    <div class="search-scrollable">
-        <div id="local-search-result" class="local-search-result-cls" data-initialise="Initialising search index..."
-            data-start="Please input search keywords." data-empty="No result found, please try other keywords.">
-            <span>Please input search keywords.</span>
-        </div>
-    </div>
-</div>
-<div id="header">
-    <div>
-        <div class="logo animated fadeInDown">
-            <img src="/img/favicon.png" alt="">
-            <a class="image-logo" href="/"></a>
-        </div>
-        <ul id="menu-menu" class="menu text-menu">
-            
-            <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
-                <a href="/whoami/" title="关于" external="false" class="menu-link">关于</a>
-            </li>
-            
-            <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
-                <a href="/categories/" title="分类" external="false" class="menu-link">分类</a>
-            </li>
-            
-            <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
-                <a href="/tags/" title="标签" external="false" class="menu-link">标签</a>
-            </li>
-            
-            <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
-                <a href="/archives/" title="归档" external="false" class="menu-link">归档</a>
-            </li>
-            
-            
-            <li class="animated fadeInDown search-bar iconfont icon-search"></li>
-            
-        </ul>
-        <div class="iconfont icon-menu switchmenu gradient-text animated fadeInDown"></div>
-    </div>
-</div>
-<div id="screen">
-    <div id="mark">
-        <div class="cover animated fadeIn" style="
-            animation-delay: 900ms;
-            animation-duration: 2.8s;
-            background-image:
-                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.56), #100e17),
-                url(/img/cover.jpg);">
-        </div>
-    </div>
-    
-    <div id="post0" class="else">
-        <p class="animated fadeInDown">
-            
-            <a href="/categories/碎语"><b>「
-                </b>碎语<b> 」</b></a>
-            
-            November 22, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown">
-            <a href="/2019/11/22/hello-world/" title="Hello World" class="posttitle">Hello World</a></h3>
-        
-        <p class="post-count animated fadeInDown">
-            
-            <span>
-                <b class="iconfont icon-text2"></b> <i>Words count</i>
-                1.8k
-            </span>
-            
-            
-            <span>
-                <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
-                2 mins.
-            </span>
-            
-            
-        </p>
-        
-        
-        <div class="md-content animated fadeIn">
-            
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems...</p>
-            
-            <span class="read-more"><a href="/2019/11/22/hello-world/" title="Read article" class="posttitle">Read article</a>
-                <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-    
-</div>
+<h3 id="Who-am-I"><a href="#Who-am-I" class="headerlink" title="Who am I"></a><a href="#Who-am-I" title="Who am I"></a><code>Who am I</code></h3><p>欢迎来到我的博客, 我是 <strong>奇谈 (Dszkng)</strong>,<br>5年里专注于 Web开发。</p>
+<p>追求极致, 追求完美, 喜欢一个高效, 优雅, 高凝聚力的团队,<br>立志于打造最优秀的产品, 成为一名既优雅而有深度的技术人才。</p>
+<p>喜欢接受挑战，爱好音乐、电影，生活和工作平衡，有节奏感的人生。</p>
+<p>Welcome to my blog, I am <strong>Dszkng</strong><br>Full-stack software engineer and framework architect ,<br>specialized in PHP, Javascript, VueJs, AngularJs, Webpack, Laravel, Lumen.</p>
+<hr>
+<h3 id="Open-Sources"><a href="#Open-Sources" class="headerlink" title="Open Sources"></a><a href="#Open-Sources" title="Open Sources"></a><code>Open Sources</code></h3><hr>
+<h3 id="Dev-Gears"><a href="#Dev-Gears" class="headerlink" title="Dev Gears"></a><a href="#Dev-Gears" title="Dev Gears"></a><code>Dev Gears</code></h3><ul>
+<li>硬件：MackBook Pro</li>
+<li>系统：MacOS</li>
+<li>编辑器：<a href="https://www.jianshu.com/p/c8a7fcd57896" target="_blank" rel="noopener">PhpStorm</a></li>
+<li>PHP 代码风格矫正器：<a href="https://www.jianshu.com/p/d147dcf43a04" target="_blank" rel="noopener">PHP-CS-Fixer</a></li>
+<li>命令行工具：<a href="https://www.iterm2.com/" target="_blank" rel="noopener">iTerm2 (Mac)</a></li>
+<li>浏览器：<a href="https://www.google.com/chrome/browser/desktop/index.html" target="_blank" rel="noopener">Chrome</a></li>
+<li>虚拟机：<a href="https://www.virtualbox.org/" target="_blank" rel="noopener">VirtualBox</a></li>
+<li>MySQL 数据库查询工具：<a href="http://www.sequelpro.com/" target="_blank" rel="noopener">Sequel Pro (Mac)</a></li>
+<li>Redis 管理工具：<a href="https://xclient.info/s/medis.html" target="_blank" rel="noopener">Medis (Mac)</a></li>
+<li>MongoDB 管理工具：<a href="https://robomongo.org/" target="_blank" rel="noopener">Robo 3T</a></li>
+<li>设计工具：<a href="https://www.sketch.com/" target="_blank" rel="noopener">Sketch 5 (Mac)</a></li>
+<li>Markdown编写工具：<a href="https://typora.io/" target="_blank" rel="noopener">Typora</a></li>
+</ul>
+<hr>
 
-<div class="screen-gradient-after">
-    <div class="screen-gradient-content">
-        <div class="screen-gradient-content-inside">
-            <div class="bold-underline-links screen-gradient-sponsor">
-                <p>
-                    <span class="typed-text"></span>
-                </p>
+                
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-    <div id="primary">
-        
-    </div>
-    
-</div>
-<div id="preview"></div>
 
     <div id="back-to-top" class="animated fadeIn faster">
         <div class="flow"></div>
@@ -188,7 +111,7 @@
     <p class="copyright" id="copyright">
         &copy; 2019
         <span class="gradient-text">
-            John Doe
+            dszkng
         </span>.
         Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
         Theme
