@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Hexo</title>
+    <title>Category: 运维 - Hexo</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
@@ -123,36 +123,39 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/碎语"><b>「
-                </b>碎语<b> 」</b></a>
+            <a href="/categories/运维"><b>「
+                </b>运维<b> 」</b></a>
             
-            November 22, 2019
+            July 28, 2019
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2019/11/22/hello-world/" title="Hello World" class="posttitle">Hello World</a></h3>
+            <a href="/2019/07/28/linux-cmd-back-run/" title="linux 让命令或程序在终端后台运行的方法（Ubuntu&#x2F;Fedora&#x2F;CentOS 等一样适用）" class="posttitle">linux 让命令或程序在终端后台运行的方法（Ubuntu&#x2F;Fedora&#x2F;CentOS 等一样适用）</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>Words count</i>
-                1.8k
+                1.6k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
-                2 mins.
+                1 mins.
             </span>
             
             
         </p>
         
         
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C/" rel="tag">后台运行</a></li></ul>
+        
         <div class="md-content animated fadeIn">
             
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems...</p>
+            <p>我们在用SecureCRT等终端工具远程登录时，很多时候需要执行一个程序，但是希望程序在用户注销或终端关闭后，能够继续在后台运行。下面介绍几种方法还有注意事项：</p>
+<p>一般情况下在命令后面加&amp;，然后...</p>
             
-            <span class="read-more"><a href="/2019/11/22/hello-world/" title="Read article" class="posttitle">Read article</a>
+            <span class="read-more"><a href="/2019/07/28/linux-cmd-back-run/" title="Read article" class="posttitle">Read article</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -173,56 +176,6 @@
 
     <div id="primary">
         
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(/img/welcome-cover.jpg);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/运维">
-                  <b>「 </b>运维<b> 」</b>
-                </a>
-            
-            July 28, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/07/28/linux-cmd-back-run/" title="linux 让命令或程序在终端后台运行的方法（Ubuntu&#x2F;Fedora&#x2F;CentOS 等一样适用）" class="posttitle">linux 让命令或程序在终端后台运行的方法（Ubuntu&#x2F;Fedora&#x2F;CentOS 等一样适用）</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>Words count</i>
-                        1.6k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C/" rel="tag">后台运行</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <p>我们在用SecureCRT等终端工具远程登录时，很多时候需要执行一个程序，但是希望程序在用户注销或终端关闭后，能够继续在后台运行。下面介绍几种方法还有注意事项：</p>
-<p>一般情况下在命令后面加&amp;，然后回车执行，就可以了：</p>
-<pre><code>$ node server &amp;</code></pre><p>如果你的命令是要执行一个不退出的程序，例如：</p>
-<pre><code>$ node server</code></pre><p>那么它就会一直阻塞控制台，不能输入其他命令了。<br>这时候想让这个程序转到后台运行的话，按ctrl+z便能使其转到后台运行；可以释放控制台做其他操作了。</p>
-<p>如果在你进行操作之前...</p>
-            
-            <span class="read-more"><a href="/2019/07/28/linux-cmd-back-run/" title="Read article" class="posttitle">Read article</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
 <div class="post" id="post">
     <div class="post-cover animated fadeIn" style="
             background-image:
@@ -318,58 +271,6 @@ $ service sshd start</code></pre><p><strong>Mac</strong></p>
 $ sudo launchctl load -w /System/...</code></pre>
             
             <span class="read-more"><a href="/2019/07/27/ssh-no-pwd-login/" title="Read article" class="posttitle">Read article</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(/img/welcome-cover.jpg);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="javascript:;" target="_blank" rel="noopener"><b>「 </b>Article<b> 」</b></a>
-            
-            July 27, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/07/27/home/" title="首页" class="posttitle">首页</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>Words count</i>
-                        571
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <p>Hi，这里是我平常做笔记的地方，源码都是使用 markdown 撰写，目前放在 <a href="https://github.com/dszkng" target="_blank" rel="noopener">github</a> 上，若有错误还请多多留言指正😃</p>
-<ul>
-<li>本站是一个个人笔记网站，主要用于本人记录一些零零碎碎的技术笔记，以及转载一些有价值的技术文章。</li>
-<li>转载的文章我都会尽可能注明链接来源网址及作者信息。</li>
-<li>如有侵权或转载未注明来源（有些笔记里存储的文章来源已丢失），请联系站长。</li>
-</ul>
-<ul>
-<li>2019/07/26 - 博客重新上线</li>
-<li>2016/04/28 - 博客上线</li>
-</ul>
-
-            
-            <span class="read-more"><a href="/2019/07/27/home/" title="Read article" class="posttitle">Read article</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>

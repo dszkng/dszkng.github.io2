@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2019/11/22/hello-world/"/>
+      <url>/2019/11/22/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;</code></pre><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server</code></pre><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate</code></pre><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy</code></pre><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 碎语 </category>
+          
+          <category> 工具 </category>
+          
+          <category> 导航 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>linux 让命令或程序在终端后台运行的方法（Ubuntu/Fedora/CentOS 等一样适用）</title>
+      <link href="/2019/07/28/linux-cmd-back-run/"/>
+      <url>/2019/07/28/linux-cmd-back-run/</url>
+      
+        <content type="html"><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>我们在用SecureCRT等终端工具远程登录时，很多时候需要执行一个程序，但是希望程序在用户注销或终端关闭后，能够继续在后台运行。下面介绍几种方法还有注意事项：</p><h2 id="方法1：命令后面加-amp"><a href="#方法1：命令后面加-amp" class="headerlink" title="方法1：命令后面加 &amp;"></a>方法1：命令后面加 &amp;</h2><p>一般情况下在命令后面加&amp;，然后回车执行，就可以了：</p><pre><code>$ node server &amp;</code></pre><h2 id="方法2：运行命令后再按-ctrl-z"><a href="#方法2：运行命令后再按-ctrl-z" class="headerlink" title="方法2：运行命令后再按 ctrl+z"></a>方法2：运行命令后再按 ctrl+z</h2><p>如果你的命令是要执行一个不退出的程序，例如：</p><pre><code>$ node server</code></pre><p>那么它就会一直阻塞控制台，不能输入其他命令了。<br>这时候想让这个程序转到后台运行的话，按ctrl+z便能使其转到后台运行；可以释放控制台做其他操作了。</p><h2 id="方法3：使用-bg-命令"><a href="#方法3：使用-bg-命令" class="headerlink" title="方法3：使用 bg 命令"></a>方法3：使用 bg 命令</h2><p>如果在你进行操作之前，程序早就已经在前台运行了的话，要找回这个程序，先输入jobs，查看要找回的程序，记住左边的编号；再输入bg 编号，搞定。</p><pre><code>$ jobs[1]+  已停止               sudo node server$ bg 1</code></pre><h2 id="特别要注意的一点"><a href="#特别要注意的一点" class="headerlink" title="特别要注意的一点"></a>特别要注意的一点</h2><p><strong>涉及到用户权限的命令，如果要放后台运行，必须先运行这个命令，再 <code>ctrl+z</code> 放到后台。</strong></p><p><strong>不能直接后面加 <code>&amp;</code>：</strong></p><pre><code>$ sudo node server &amp;</code></pre><p><strong>必须去先执行命令：</strong></p><pre><code>$ sudo node server[sudo] password for xxx: 输入密码</code></pre><p><strong>然后再按 <code>ctrl+z</code> 将程序放到后台运行。</strong></p><p>原因很简单，因为在输命令后还需要确认一次密码，想直接加 <code>&amp;</code> 就会让程序自己后台运行的话，岂不大 bug 也？</p><p>这也是网上很多教程文章等等的忽略的一点，忘记提醒刚接触 linux 的读者，让大家走了好多弯路，例如曾经的我，哈哈哈。</p><p><a href="https://segmentfault.com/a/1190000008314935" target="_blank" rel="noopener">转载自：segmentfault</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 运维 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 后台运行 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CentOS 7 安装 Docker 和 Docker-compose</title>
+      <link href="/2019/07/27/CentOS7-%E5%AE%89%E8%A3%85-Docker-%E5%92%8C-Docker-compose/"/>
+      <url>/2019/07/27/CentOS7-%E5%AE%89%E8%A3%85-Docker-%E5%92%8C-Docker-compose/</url>
+      
+        <content type="html"><![CDATA[<h2 id="CentOS-7-安装-Docker-和-Docker-compose"><a href="#CentOS-7-安装-Docker-和-Docker-compose" class="headerlink" title="CentOS 7 安装 Docker 和 Docker-compose"></a>CentOS 7 安装 Docker 和 Docker-compose</h2><p><a href="https://www.centos.bz/2019/01/centos7-%E5%AE%89%E8%A3%85-docker-%E5%92%8C-docker-compose/" target="_blank" rel="noopener">https://www.centos.bz/2019/01/centos7-%E5%AE%89%E8%A3%85-docker-%E5%92%8C-docker-compose/</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 运维 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> docker </tag>
+            
+            <tag> docker-compose </tag>
+            
+            <tag> centos </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ssh 免密码登录服务器</title>
+      <link href="/2019/07/27/ssh-no-pwd-login/"/>
+      <url>/2019/07/27/ssh-no-pwd-login/</url>
+      
+        <content type="html"><![CDATA[<h2 id="ssh-免密码登录服务器"><a href="#ssh-免密码登录服务器" class="headerlink" title="ssh 免密码登录服务器"></a>ssh 免密码登录服务器</h2><p>要实现 ssh 登录服务器，首先就要保证客户机（Mac/Pc）和服务器的 ssh 服务是开启的，它们的相关的命令如下：</p><p><strong>linux</strong></p><pre><code># start:开启 stop:关闭 restart:重启 status:查看服务状态$ service sshd start</code></pre><p><strong>Mac</strong></p><pre><code># 1.编辑/etc/sshd_config文件，注释掉 #ForceCommand /usr/local/bin/ssh_session# 2.启动sshd服务$ sudo launchctl load -w /System/Library/LaunchDaemons/ssh.plist# 3.停止sshd服务$ sudo launchctl unload -w /System/Library/LaunchDaemons/ssh.plist# 4.查看是否启动$ sudo launchctl list | grep ssh</code></pre><p><strong>其次，就是在本机生成密钥：</strong></p><p>已经存在密钥了则可以不用操作，否则需要在终端下执行命令 <code>ssh-keygen -t rsa</code>，最后把公钥放到服务器上，使用 <code>scp</code> 命令：</p><pre><code>$ scp ~/.ssh/id_rsa.pub aakng@服务器地址:/home/aakng/.ssh/</code></pre><p>然后把 id_rsa.pub 的内容加入到服务器端的默认验证文件 authorized_keys 中：</p><pre><code># 1.先登录到远程服务器，假设登录账号是aakng，/home/aakng/.ssh/和~/.ssh是同个目录$ cd ~/.ssh# 2.将公钥内容加入到authorized_keys文件，没有则新建一个就行。或者将公钥粘贴到authorized_keys中$ cat -n /home/aakng/.ssh/local.id_rsa.pub &gt;&gt; authorized_keys</code></pre><p><strong>其它方法：直接将本机的公钥写入服务器账号下的authorized_keys中（没有测试过），命令如下：</strong></p><pre><code>$ ssh-copy-id -i ~/.ssh/id_rsa.pub aakng@服务器地址</code></pre><p><strong>最后，可以实现免密登录服务器</strong></p><pre><code>$ ssh aakng@服务器地址</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 运维 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ssh </tag>
+            
+            <tag> 免密登录 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>首页</title>
+      <link href="/2019/07/27/home/"/>
+      <url>/2019/07/27/home/</url>
+      
+        <content type="html"><![CDATA[<h1 id="首页"><a href="#首页" class="headerlink" title="首页"></a>首页</h1><p>Hi，这里是我平常做笔记的地方，源码都是使用 markdown 撰写，目前放在 <a href="https://github.com/dszkng" target="_blank" rel="noopener">github</a> 上，若有错误还请多多留言指正😃</p><h2 id="关于本站"><a href="#关于本站" class="headerlink" title="关于本站"></a>关于本站</h2><ul><li>本站是一个个人笔记网站，主要用于本人记录一些零零碎碎的技术笔记，以及转载一些有价值的技术文章。</li><li>转载的文章我都会尽可能注明链接来源网址及作者信息。</li><li>如有侵权或转载未注明来源（有些笔记里存储的文章来源已丢失），请联系站长。</li></ul><h2 id="时间轴"><a href="#时间轴" class="headerlink" title="时间轴"></a>时间轴</h2><ul><li>2019/07/26 - 博客重新上线</li><li>2016/04/28 - 博客上线</li></ul>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+  
+  
+</search>
