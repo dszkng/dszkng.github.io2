@@ -1,0 +1,201 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="description" content="blog,dszkng"><meta name="keyword"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title>PHP 结构型设计模式</title><link rel="shortcut icon" href="/images/avatar.png" type="image/x-icon"><link href="/styles/site.css" rel="stylesheet"><meta name="generator" content="Hexo 4.0.0"><link rel="alternate" href="/atom.xml" title="Dszkng's blog" type="application/atom+xml">
+</head><body><header class="container" id="header"><div class="header"><div class="header-left"><div class="avatar"><img src="/images/avatar.png"></div><div class="author"><div class="author-name"><a href="/">D.SZKNG</a></div><div class="about-me">Halo~</div></div></div><div class="header-right"><ul class="navigation"><li><a href="/archives">归档</a></li></ul></div><div class="about-me-mask"><div class="about-me-wrap"><div class="about-me__header"><div class="avatar"><img src="/images/avatar.png"></div></div><ul class="socials"><li class="social-item"><span class="label"><img src="/images/socials/github.svg" alt="https://github.com/dszkng"></span><a href="https://github.com/dszkng" target="_blank" title="https://github.com/dszkng">https://github.com/dszkng</a></li><li class="social-item"><span class="label"><img src="/images/socials/email.svg" alt="shangzongkang@gmail.com"></span><span>shangzongkang@gmail.com</span></li><li class="social-item"><span class="label"><img src="/images/socials/wechat.svg" alt="dszkng"></span><span>dszkng</span></li></ul></div></div></div></header><div class="container post"><section class="article"><div class="title">PHP 结构型设计模式</div><div class="date">写于2019年12月03日</div><div class="content"><h2 id="适配器模式（Adapter-Pattern）"><a href="#适配器模式（Adapter-Pattern）" class="headerlink" title="适配器模式（Adapter Pattern）"></a>适配器模式（Adapter Pattern）</h2><h3 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h3><p>将截然不同的类/函数，按需要封装成统一的API。<br>比如说 PHP 中操作数据库有3种方式，<code>mysql/mysqli/pdo</code>，这3种的操作函数各不相同，通过适配器模式可以统一成一种操作方式。类似的场景还有缓存，将 <code>file/redis/memcache/apc</code> 等不同的缓存实现统一成一致的。</p>
+<h3 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h3><h3 id="示例代码1"><a href="#示例代码1" class="headerlink" title="示例代码1"></a>示例代码1</h3><pre><code class="PHP">interface Database
+{
+    public function connect($host, $user, $pass, $dbName);
+
+    public function query($sql);
+
+    public function close();
+}
+
+class MySQL implements Database
+{
+    protected $connect;
+
+    public function connect($host, $user, $pass, $dbName)
+    {
+        $conn = mysql_connect($host, $user, $pass);
+        mysql_select_db($dbName, $conn);
+        $this-&gt;connect = $conn;
+    }
+
+    public function query($sql)
+    {
+        return mysql_query($sql, $this-&gt;connect);
+    }
+
+    public function close()
+    {
+        mysql_close($this-&gt;connect);
+    }
+}
+
+class MySQLi implements Database
+{
+    protected $connect;
+
+    public function connect($host, $user, $pass, $dbName)
+    {
+        $this-&gt;connect = mysqli_connect($host, $user, $pass, $dbName);
+    }
+
+    public function query($sql)
+    {
+        return mysqli_query($this-&gt;connect, $sql);
+    }
+
+    public function close()
+    {
+        mysqli_close($this-&gt;connect);
+    }
+}
+
+class PDO implements Database
+{
+    protected $connect;
+
+    public function connect($host, $user, $pass, $dbName)
+    {
+        $this-&gt;connect = new \PDO(&quot;mysql:host={$host};dbname={$dbName}&quot;, $user, $pass);
+    }
+
+    public function query($sql)
+    {
+        return $this-&gt;connect-&gt;query($sql);
+    }
+
+    public function close()
+    {
+        unset($this-&gt;connect);
+    }
+}
+
+// Usage
+$db = new MySQL(); // new MySQLi()
+$db-&gt;connect(&#39;127.0.0.1&#39;, &#39;root&#39;, &#39;123456&#39;, &#39;blog&#39;);</code></pre>
+<h3 id="示例代码2"><a href="#示例代码2" class="headerlink" title="示例代码2"></a>示例代码2</h3><pre><code class="PHP">/**
+ * 纸质书接口
+ * Interface PaperBookInterface
+ */
+interface PaperBookInterface
+{
+    /**
+     * 打开书的方法
+     * @return mixed
+     */
+    public function open();
+
+    /**
+     * 翻页方法
+     * @return mixed
+     */
+    public function turnPage();
+}
+
+/**
+ * 纸质书接口的一个实现类
+ * Class Book
+ */
+class Book implements PaperBookInterface
+{
+    public function open()
+    {
+        echo &#39;打开纸质书&#39;;
+    }
+
+    public function turnPage()
+    {
+        echo &#39;纸质书翻页&#39;;
+    }
+}
+
+/**
+ * 电子书接口
+ */
+interface EBookInterface
+{
+    /**
+     * 打开电子书
+     * @return mixed
+     */
+    public function pressStart();
+
+    /**
+     * 电子书翻页
+     * @return mixed
+     */
+    public function pressNext();
+}
+
+/**
+ * 电子书的一个实现类
+ */
+class Kindle implements EBookInterface
+{
+    public function pressStart()
+    {
+        echo &#39;打开电子书&#39;;
+    }
+
+    public function pressNext()
+    {
+        echo &#39;电子书翻页&#39;;
+    }
+}
+
+/**
+ * EBookAdapter 是电子书适配器类
+ *
+ * 该适配器实现了纸质书接口, 但是你不必修改客户端（电子书类/接口）的方法就可以使用纸质书的访问代码
+ */
+class EBookAdapter implements PaperBookInterface
+{
+    protected $eBook;
+
+    /**
+     * 注意该构造函数注入了电子书接口 EBookInterface
+     *
+     * EBookAdapter constructor.
+     * @param EBookInterface $ebook
+     */
+    public function __construct(EBookInterface $eBook)
+    {
+        $this-&gt;eBook = $eBook;
+    }
+
+    /**
+     * 电子书将纸质书接口方法转换为电子书对应方法
+     *
+     * @return mixed|void
+     */
+    public function open()
+    {
+        $this-&gt;eBook-&gt;pressStart();
+    }
+
+    /**
+     * 纸质书翻页转化为电子书翻页
+     *
+     * @return mixed|void
+     */
+    public function turnPage()
+    {
+        $this-&gt;eBook-&gt;pressNext();
+    }
+}
+
+// Usage
+
+// 老需求:只有纸质书类
+$book = new Book();
+$book-&gt;open();
+$book-&gt;turnPage();
+
+// 新需求:改成/增加电子书类的访问, 只需更改 $book 实例就行了, 后面访问不用变
+$book = new EBookAdapter(new Kindle());
+$book-&gt;open();
+$book-&gt;turnPage();</code></pre>
+</div><div class="tags"><a class="tag-link" href="/tags/PHP/" rel="tag">PHP</a><a class="tag-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></div></section></div><div class="container"><ul class="nav"><li>下一篇：<a href="/2019/12/03/PHP-%E6%96%AD%E7%82%B9%E8%B0%83%E8%AF%95%EF%BC%88xdebug%EF%BC%89/">PHP 断点调试（xdebug）</a></li></ul></div><div id="backToTop"><div class="back-arrow back-arrow-left"></div><div class="back-arrow back-arrow-right"></div></div><footer class="container"><div class="rights"><span>© 2020 皖ICP备16002968号-1 |  </span><span>Powered by </span><a href="http://hexo.io" target="_blank">Hexo</a><span>, Theme </span><a href="https://github.com/gary-Shen/hexo-theme-bear" target="_blank">Bear</a><span>.</span></div></footer><script src="/script/jquery.min.js"></script><link rel="stylesheet" href="/fancybox/jquery.fancybox.css"><script src="/fancybox/jquery.fancybox.pack.js"></script><script src="/script/index.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-61220413-1', 'auto');
+ga('send', 'pageview');</script><script src="/script/post.js"></script></body></html>
