@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-05-24T09:28:34.138Z</updated>
+  <updated>2020-06-24T09:50:52.564Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PHP 断点调试（xdebug）</title>
+    <link href="http://yoursite.com/2019/12/03/PHP-%E6%96%AD%E7%82%B9%E8%B0%83%E8%AF%95%EF%BC%88xdebug%EF%BC%89/"/>
+    <id>http://yoursite.com/2019/12/03/PHP-%E6%96%AD%E7%82%B9%E8%B0%83%E8%AF%95%EF%BC%88xdebug%EF%BC%89/</id>
+    <published>2019-12-03T01:39:00.000Z</published>
+    <updated>2020-06-24T09:50:52.564Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="断点调试（xdebug）"><a href="#断点调试（xdebug）" class="headerlink" title="断点调试（xdebug）"></a>断点调试（xdebug）</h2><p>合适的调试器是软件开发中最有用的工具之一，它使你可以跟踪程序执行结果并监视程序堆栈中的信息。xdebug 是一个 PHP 的调试器，它可以被用来在很多 IDE 中做断点调试以及堆栈检查。它还可以像 PHPUnit 和 KCacheGrind 一样，做代码覆盖检查或者程序性能跟踪（Profile &amp; Trace）。</p><p>PHP 代码在 <code>print_r</code> 输出较大的数组时，后面内容可能会出现 <code>...</code> 而看不到，使用 <code>xdebug</code> 就能解决这个问题。</p><p>在本地调试，可以想怎么调试怎么调试，如果线上程序出了 <code>bug</code>，需要在服务器上调试，一般是 <code>改代码 =&gt; 上传 =&gt; 访问，打印输出信息</code>，非常繁琐，而 <code>xdebug</code> 可以远程调试，提高调试的效率。</p><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><h3 id="安装-amp-使用"><a href="#安装-amp-使用" class="headerlink" title="安装&amp;使用"></a>安装&amp;使用</h3><p>1.PHP 安装 xdebug 扩展（略），<code>xdebug</code> 配置如下：</p><pre><code class="ini"># php.ini[XDebug]; Debug Configxdebug.remote_enable = 1xdebug.idekey = &quot;PHPSTORM&quot;xdebug.remote_handler = &quot;dbgp&quot;; xdebug.remote_connect_back = 1xdebug.remote_host = &quot;host.docker.internal&quot;xdebug.remote_port = 9000xdebug.remote_log = &quot;/var/log/php.xdebug.log&quot;</code></pre><p>2.配置 IDE（PhpStorm），<code>xdebug</code> 有两种调试模式：</p><ul><li>针对单文件（test.php）</li><li>针对项目（xx-api/）</li></ul><p><strong>2.1针对单文件调试</strong></p><p>配置：</p><p><strong>针对项目调试</strong></p><ul><li>配置 Server（<strong>配置目录映射</strong>）</li></ul><p><img src="https://i.loli.net/2019/12/03/SCRD1kTLBwO7Ncv.png" alt=""></p><ul><li>配置 debug 的本地监听端口</li></ul><p><img src="https://i.loli.net/2019/12/03/SZYAyrLo9Ua4cCg.png" alt=""></p><ul><li><p>启动本地监听服务。</p><p>  Run =&gt; Start Listening for PHP Debug Connections 或者点击电话的图标。</p></li><li><p>在 PhpStorm 中打断点</p></li><li><p>打开调试的页面/接口地址+<code>?XDEBUG_SESSION_START=PHPSTORM</code>，目的就是带上在 <code>xdebug</code> 配置中约定的 <code>PHPSTORM</code> 字符串，服务端好知道请求的目的。</p></li><li><p>此时 PhpStorm 会蹦出一个调试栏，可以看到调试信息。<br>  PhpStorm 会拦截当前执行的脚本状态，运行你设置的断点并查看内存中的值。</p></li></ul><p>到这里其实已经大功告成了，但是每次调试都要手动加上参数会不会太麻烦了？<br>是的，这个问题已经有人帮你想好啦，可以去装一个浏览器插件，chrome的插件是 <code>xdebug helper</code>。开启这个插件就不需要在 <code>URL</code> 上加参数了。<br>它的原理是给浏览器设置一个 <code>cookie</code>，Name 是 <code>XDEBUG_SESSION</code>，Key 是 <code>PHPSTORM</code>。</p><p>为什么要设置目录映射？<br>无论那种调试模式，实际上运行的都是 Docker 中的项目和文件，所以开启映射就相当于给 Docker 中的项目打断点，和 PHP 执行的文件就统一了！这样才能成功。</p><p>如果你仍在使用 <code>var_dump()/print_r()</code> 调错，经常会发现自己处于困境，并且仍然找不到解决办法。这时，你该使用调试器了。</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><code>xdebug</code> 是一个开放源代码的 PHP 程序调试和性能分析器（即一个 debug 工具），可以用来跟踪，调试和分析 PHP 程序的运行状况。相比<code>echo、print_r()、var_dump()、printf()</code>函数，使用xdebug的效率和精准度更高、也更快捷。</p><p>参考文章：<br><a href="http://laravel-china.github.io/php-the-right-way/#xdebug">xdebug介绍</a><br><a href="https://learnku.com/articles/4090/the-first-step-to-becoming-a-senior-php-programmer-debugging-xdebug-principle">xdebug原理</a><br><a href="https://juejin.im/entry/58fdc9868d6d8100589d826a">xdebug配置</a><br><a href="https://www.cnblogs.com/sunsky303/p/11544520.html">使用xdebug对php做性能分析调优</a><br><a href="https://www.jianshu.com/p/c40a27129aca">PhpStorm + Docker LNMP 中 Xdebug 配置</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;断点调试（xdebug）&quot;&gt;&lt;a href=&quot;#断点调试（xdebug）&quot; class=&quot;headerlink&quot; title=&quot;断点调试（xdebug）&quot;&gt;&lt;/a&gt;断点调试（xdebug）&lt;/h2&gt;&lt;p&gt;合适的调试器是软件开发中最有用的工具之一，它使你可以跟踪程序
+      
+    
+    </summary>
+    
+    
+      <category term="工具" scheme="http://yoursite.com/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="PHP" scheme="http://yoursite.com/tags/PHP/"/>
+    
+      <category term="Docker" scheme="http://yoursite.com/tags/Docker/"/>
+    
+      <category term="xdebug" scheme="http://yoursite.com/tags/xdebug/"/>
+    
+      <category term="断点调试" scheme="http://yoursite.com/tags/%E6%96%AD%E7%82%B9%E8%B0%83%E8%AF%95/"/>
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>
