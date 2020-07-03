@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <meta http-equiv=”Cache-Control” content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <title>linux 让命令或程序在终端后台运行的方法（Ubuntu/Fedora/CentOS 等一样适用） | Dszkng&#39;s blog</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.icon">
+  
+
+
+
+<link rel="stylesheet" href="/./vendor.4879b4.css"><link rel="stylesheet" href="/./app.72f659.css">
+
+
+<link rel="alternate" href="/atom.xml" title="Dszkng's blog" type="application/atom+xml">
+</head>
+  <body>
+    <header class="main-header">
+  <div class="container">
+    <a href="/"" class="logo">
+      <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gg2bzk93z6j30oe0oe7ol.jpg" alt="voya" class="logo-img">
+    </a>
+    <span class="nav-separator"></span>
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索文章"><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+    <a href="javascript:void(0);" class="nav-icon">
+      <i class="fas fa-bars"></i>
+    </a>
+    <nav class="main-nav">
+      <ul class="nav-list">
+        
+          <li class="nav-link ">
+            <a href="/">首页</a>
+          </li>
+        
+          <li class="nav-link ">
+            <a href="/archives/">归档</a>
+          </li>
+        
+          <li class="nav-link ">
+            <a href="/categories">分类</a>
+          </li>
+        
+          <li class="nav-link ">
+            <a href="/about">关于</a>
+          </li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+    <div class="page--article">
+  
+    <div class="toc-container">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法1：命令后面加-amp"><span class="toc-number">2.</span> <span class="toc-text">方法1：命令后面加 &amp;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法2：运行命令后再按-ctrl-z"><span class="toc-number">3.</span> <span class="toc-text">方法2：运行命令后再按 ctrl+z</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法3：使用-bg-命令"><span class="toc-number">4.</span> <span class="toc-text">方法3：使用 bg 命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#特别要注意的一点"><span class="toc-number">5.</span> <span class="toc-text">特别要注意的一点</span></a></li></ol>
+      <div class="toc-tip">Table of Contents</div>
+    </div>
+  
+
+
+  <div class="container">
+    <article>
+      <h1 class="page--article--title">linux 让命令或程序在终端后台运行的方法（Ubuntu/Fedora/CentOS 等一样适用）</h1>
+      
+        <div class="page--article--date-info">
+          写于 2019.07.28
+          最后更新 2020.07.03
+        </div>
+      
+      <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>我们在用SecureCRT等终端工具远程登录时，很多时候需要执行一个程序，但是希望程序在用户注销或终端关闭后，能够继续在后台运行。下面介绍几种方法还有注意事项：</p>
+<h2 id="方法1：命令后面加-amp"><a href="#方法1：命令后面加-amp" class="headerlink" title="方法1：命令后面加 &amp;"></a>方法1：命令后面加 &amp;</h2><p>一般情况下在命令后面加&amp;，然后回车执行，就可以了：</p>
+<pre><code>$ node server &amp;</code></pre><h2 id="方法2：运行命令后再按-ctrl-z"><a href="#方法2：运行命令后再按-ctrl-z" class="headerlink" title="方法2：运行命令后再按 ctrl+z"></a>方法2：运行命令后再按 ctrl+z</h2><p>如果你的命令是要执行一个不退出的程序，例如：</p>
+<pre><code>$ node server</code></pre><p>那么它就会一直阻塞控制台，不能输入其他命令了。<br>这时候想让这个程序转到后台运行的话，按ctrl+z便能使其转到后台运行；可以释放控制台做其他操作了。</p>
+<h2 id="方法3：使用-bg-命令"><a href="#方法3：使用-bg-命令" class="headerlink" title="方法3：使用 bg 命令"></a>方法3：使用 bg 命令</h2><p>如果在你进行操作之前，程序早就已经在前台运行了的话，要找回这个程序，先输入jobs，查看要找回的程序，记住左边的编号；再输入bg 编号，搞定。</p>
+<pre><code>$ jobs
+[1]+  已停止               sudo node server
+$ bg 1</code></pre><h2 id="特别要注意的一点"><a href="#特别要注意的一点" class="headerlink" title="特别要注意的一点"></a>特别要注意的一点</h2><p><strong>涉及到用户权限的命令，如果要放后台运行，必须先运行这个命令，再 <code>ctrl+z</code> 放到后台。</strong></p>
+<p><strong>不能直接后面加 <code>&amp;</code>：</strong></p>
+<pre><code>$ sudo node server &amp;</code></pre><p><strong>必须去先执行命令：</strong></p>
+<pre><code>$ sudo node server
+[sudo] password for xxx: 输入密码</code></pre><p><strong>然后再按 <code>ctrl+z</code> 将程序放到后台运行。</strong></p>
+<p>原因很简单，因为在输命令后还需要确认一次密码，想直接加 <code>&amp;</code> 就会让程序自己后台运行的话，岂不大 bug 也？</p>
+<p>这也是网上很多教程文章等等的忽略的一点，忘记提醒刚接触 linux 的读者，让大家走了好多弯路，例如曾经的我，哈哈哈。</p>
+<p><a href="https://segmentfault.com/a/1190000008314935">转载自：segmentfault</a></p>
+
+  </article>
+    
+  </div>
+</div>
+
+    <footer class="main-footer">
+  <div class="container">
+    © 2020 皖ICP备16002968号-1 
+  </div>
+</footer>
+
+    
+
+
+
+<script src="/./runtime.32f029.js"></script><script src="/./vendor.4879b4.js"></script><script src="/./app.72f659.js"></script>
+
+
+  </body>
+</html>

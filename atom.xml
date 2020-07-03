@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-06-24T09:50:52.564Z</updated>
+  <updated>2020-07-03T09:30:29.423Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,21 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ajax 跨域请求，每次会发送两个请求？</title>
+    <link href="http://yoursite.com/2019/12/19/ajax-%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82%EF%BC%8C%E6%AF%8F%E6%AC%A1%E4%BC%9A%E5%8F%91%E9%80%81%E4%B8%A4%E4%B8%AA%E8%AF%B7%E6%B1%82%EF%BC%9F/"/>
+    <id>http://yoursite.com/2019/12/19/ajax-%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82%EF%BC%8C%E6%AF%8F%E6%AC%A1%E4%BC%9A%E5%8F%91%E9%80%81%E4%B8%A4%E4%B8%AA%E8%AF%B7%E6%B1%82%EF%BC%9F/</id>
+    <published>2019-12-19T09:49:00.000Z</published>
+    <updated>2020-07-03T09:30:29.423Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>PHP 断点调试（xdebug）</title>
@@ -49,27 +64,28 @@
   </entry>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://yoursite.com/2018/11/22/hello-world/"/>
-    <id>http://yoursite.com/2018/11/22/hello-world/</id>
-    <published>2018-11-22T10:07:00.000Z</published>
-    <updated>2020-05-24T09:28:34.138Z</updated>
+    <title>linux 让命令或程序在终端后台运行的方法（Ubuntu/Fedora/CentOS 等一样适用）</title>
+    <link href="http://yoursite.com/2019/07/28/linux-cmd-back-run/"/>
+    <id>http://yoursite.com/2019/07/28/linux-cmd-back-run/</id>
+    <published>2019-07-28T14:52:00.000Z</published>
+    <updated>2020-07-03T09:30:17.511Z</updated>
     
-    <content type="html"><![CDATA[<p>应该没人会访问到这里吧！<br>2333</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>我们在用SecureCRT等终端工具远程登录时，很多时候需要执行一个程序，但是希望程序在用户注销或终端关闭后，能够继续在后台运行。下面介绍几种方法还有注意事项：</p><h2 id="方法1：命令后面加-amp"><a href="#方法1：命令后面加-amp" class="headerlink" title="方法1：命令后面加 &amp;"></a>方法1：命令后面加 &amp;</h2><p>一般情况下在命令后面加&amp;，然后回车执行，就可以了：</p><pre><code>$ node server &amp;</code></pre><h2 id="方法2：运行命令后再按-ctrl-z"><a href="#方法2：运行命令后再按-ctrl-z" class="headerlink" title="方法2：运行命令后再按 ctrl+z"></a>方法2：运行命令后再按 ctrl+z</h2><p>如果你的命令是要执行一个不退出的程序，例如：</p><pre><code>$ node server</code></pre><p>那么它就会一直阻塞控制台，不能输入其他命令了。<br>这时候想让这个程序转到后台运行的话，按ctrl+z便能使其转到后台运行；可以释放控制台做其他操作了。</p><h2 id="方法3：使用-bg-命令"><a href="#方法3：使用-bg-命令" class="headerlink" title="方法3：使用 bg 命令"></a>方法3：使用 bg 命令</h2><p>如果在你进行操作之前，程序早就已经在前台运行了的话，要找回这个程序，先输入jobs，查看要找回的程序，记住左边的编号；再输入bg 编号，搞定。</p><pre><code>$ jobs[1]+  已停止               sudo node server$ bg 1</code></pre><h2 id="特别要注意的一点"><a href="#特别要注意的一点" class="headerlink" title="特别要注意的一点"></a>特别要注意的一点</h2><p><strong>涉及到用户权限的命令，如果要放后台运行，必须先运行这个命令，再 <code>ctrl+z</code> 放到后台。</strong></p><p><strong>不能直接后面加 <code>&amp;</code>：</strong></p><pre><code>$ sudo node server &amp;</code></pre><p><strong>必须去先执行命令：</strong></p><pre><code>$ sudo node server[sudo] password for xxx: 输入密码</code></pre><p><strong>然后再按 <code>ctrl+z</code> 将程序放到后台运行。</strong></p><p>原因很简单，因为在输命令后还需要确认一次密码，想直接加 <code>&amp;</code> 就会让程序自己后台运行的话，岂不大 bug 也？</p><p>这也是网上很多教程文章等等的忽略的一点，忘记提醒刚接触 linux 的读者，让大家走了好多弯路，例如曾经的我，哈哈哈。</p><p><a href="https://segmentfault.com/a/1190000008314935">转载自：segmentfault</a></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;应该没人会访问到这里吧！&lt;br&gt;2333&lt;/p&gt;
-
+        &lt;h2 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h2&gt;&lt;p&gt;我们在用SecureCRT等终端工具远程登录时，很多时候需要执行一个程序，但是希望程序在用户注销或终端关闭后，能够继续在后台运行。下面介绍几
       
     
     </summary>
     
     
-      <category term="工具" scheme="http://yoursite.com/categories/%E5%B7%A5%E5%85%B7/"/>
+      <category term="运维" scheme="http://yoursite.com/categories/%E8%BF%90%E7%BB%B4/"/>
     
+    
+      <category term="后台运行" scheme="http://yoursite.com/tags/%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C/"/>
     
   </entry>
   
